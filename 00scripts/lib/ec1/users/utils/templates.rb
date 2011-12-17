@@ -4,7 +4,8 @@
 module Ec1 module Users module Utils
 
 class Templates
-require 'ec1/users/toolkit/full.rb'
+require 'ec1/lib/toolkit/full.rb'
+include Ec1::Lib::Toolkit::Standard
   def initialize(new_file, type='ruby_pima_copyleft')
     @new_file = new_file
   end

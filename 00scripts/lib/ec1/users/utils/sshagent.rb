@@ -2,8 +2,8 @@
 # tested with ruby 1.9.2
 
 module Ec1 module Users module Utils
-require 'ec1/users/toolkit/standard.rb'
-include Ec1::Users::Toolkit::Standard
+require 'ec1/lib/toolkit/standard.rb'
+include Ec1::Lib::Toolkit::Standard
 
 class SshAgent
   def initialize

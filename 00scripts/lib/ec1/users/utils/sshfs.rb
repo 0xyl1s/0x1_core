@@ -4,8 +4,8 @@
 module Ec1 module Users module Utils
 
 class Sshfs
-require 'ec1/users/toolkit/standard.rb'
-include Ec1::Users::Toolkit::Standard
+require 'ec1/lib/toolkit/standard.rb'
+include Ec1::Lib::Toolkit::Standard
 
 def initialize
   shares_infos()

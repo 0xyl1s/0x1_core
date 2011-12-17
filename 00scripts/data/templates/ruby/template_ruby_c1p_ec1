@@ -2,7 +2,7 @@
 # encoding: utf-8
 # tested with ruby 1.9.2
 
-require 'ec1/users/toolkit/full.rb'
+require 'ec1/lib/toolkit/full.rb'
 
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
