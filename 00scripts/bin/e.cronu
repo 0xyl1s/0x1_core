@@ -6,6 +6,6 @@ if [ -f $crontab_ec1user_local ]; then
     cat $crontab_ec1user_local | crontab -
 fi
 
-e_cronl
+e.cronl
 
 # vim: ft=sh

@@ -9,7 +9,7 @@ USAGE = <<-heredoc
 \n============================================================
 ==   ec1_users > utils > Security > SSHAgent              ==
 ============================================================
-e_sshfs allows to manage local sshfs shares.
+e.sshfs allows to manage local sshfs shares.
 Main functions :
  - list | -l
     list all shares
