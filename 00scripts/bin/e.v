@@ -4,7 +4,7 @@
 
 
 ARGV.each do |e_file|
-  system("gvim #{e_file}")
+  system("vlc #{e_file}")
 end
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
