@@ -1,0 +1,78 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+# tested with ruby 1.9.2
+
+module Ec1 module Users module Utils
+require 'ec1/users/utils/sshagent.rb'
+
+USAGE = <<-heredoc
+\n============================================================
+==   ec1_users > utils > Security > SSHAgent              ==
+============================================================
+SSHAgent allow certificate management for ssh-agent.
+Main functions :
+ - add | -a <certificate_path> (defaults to $HOME/.ssh/id_rsa)
+    adds a certificate to the running ssh-agent instance
+ - list | -l
+    list all certificates added to the currrently running ssh-agent instance.
+ - infos | -i
+    displays infos about the currrently running ssh-agent instance.
+ - help | -h
+    displays this help screen
+
+============================================================\n
+heredoc
+
+main_function = ARGV.shift
+other_arguments = *ARGV
+
+sshagent = SshAgent.new
+
+case main_function
+when 'help', '-h'
+  puts USAGE
+when 'add', '-a', nil
+  other_arguments.empty? ? sshagent.add_certificate : sshagent.add_certificate(other_arguments)
+when 'list', '-l'
+  sshagent.list_certificates
+when 'infos', '-i'
+  sshagent.agent_infos
+when 't'
+  other_arguments.empty? ? sshagent.test : sshagent.test(other_arguments)
+else
+  abort "#{USAGE}"
+end
+
+end end end
+
+
+
+# Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
+# Project: Epiculture
+# Author: Pierre-Mael Cretinon
+# Email: projects2011@3eclipses.com
+# coding style: 0.0.2
+# License: GNU GPLv3
+#
+# Notes:
+#
+# License details:
+# <copyright/copyleft>
+# Copyright 2010-2011 (c) Pierre-Mael CRETINON <copyleft@pierremael.net>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# 
+# </copyright/copyleft>
+# Project infos <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<# }}}
+#vim: foldmethod=marker

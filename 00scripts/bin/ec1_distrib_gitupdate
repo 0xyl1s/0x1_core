@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+#(cd ~/.ec1/ec1_distrib ; git status)
+
+ec1_distrib_path="$HOME/.ec1/ec1_distrib"
+if [ -d $ec1_distrib_path ]; then
+    echo "git pulling $ec1_distrib_path"
+    cd $ec1_distrib_path ; git pull
+else
+    echo "ERROR : can't perform git pulling on $ec1_distrib_path"
+fi
+
+
+# vim: ft=sh

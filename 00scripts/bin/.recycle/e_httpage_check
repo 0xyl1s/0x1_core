@@ -1,0 +1,55 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+require 'e101u.rb'
+include E101u
+e1m=Messages01.new('xxx01')
+$VERBOSE=true
+
+require 'open-uri'
+
+def e_httpage_check_
+  loop do
+    begin
+      open("http://www.ubuntu.com/testing/1004rc")
+      puts "RC !!!"
+      %x{echo 'RC !!!'|mail -s'Lucid !' -a From:pierremael.cretinon@helianova.com pierremael.cretinon@helianova.com}
+    rescue
+      date = Time.now.strftime('%H:%M')
+      puts "not yet"
+      %x{echo 'RC :-('|mail -s'Lucid :-( not yet : #{date}' -a From:pierremael.cretinon@helianova.com pierremael.cretinon@helianova.com}
+    end
+    sleep 600
+  end
+end
+
+e_httpage_check_()
+
+# Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
+# Project: Epiculture
+# Author: Pierre-Mael Cretinon
+# Email: projects2011@3eclipses.com
+# License: GNU GPLv3
+#
+# Notes:
+#
+# License details:
+# <copyright/copyleft>
+# Copyright 2010-2011 (c) Pierre-Mael CRETINON <copyleft@pierremael.net>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# 
+# </copyright/copyleft>
+# Project infos <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<# }}}
+#vim: foldmethod=marker

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+date >> $HOME/.recycle/test_cron
+
+# vim: ft=sh

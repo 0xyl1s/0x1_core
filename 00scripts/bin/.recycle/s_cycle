@@ -1,0 +1,137 @@
+#!/bin/bash
+
+. $S2_BASHUSERScurrent_PATH/01_sources
+s2function="0051";
+
+case $1 in
+	-h )
+		echo '
+************************** sda2_function_usage *********************************
+s_cycle $1 [noexit]
+$1 = cyclablefile
+
+********************************************************************************
+s0051
+	';;
+	* )
+		if [ ! -z "$1" ]; then
+			unset s0051_blank_copy_file;
+			unset s0051_blank_copy_directory;
+			s0051_cyclablefile_raw="$1";
+			s0051_cyclablefile_slashending_check=$(echo "$s0051_cyclablefile_raw" | egrep ".*/$");
+			if [ ! -z "$s0051_cyclablefile_slashending_check" ]; then
+				s0051_cyclablefile=$(echo "$s0051_cyclablefile_raw" | sed -n "s!^\(.*\)/\$!\1!gp");
+			else
+				s0051_cyclablefile="$s0051_cyclablefile_raw";
+			fi
+			s0051_cyclablefile_slash_check=$(echo "$s0051_cyclablefile" | egrep "/");
+			if [ -z "$s0051_cyclablefile_slash_check" ]; then
+				s0051_cyclablefile_type=$(s_snippet_fileinfo "$s0051_cyclablefile" -t);
+				if [ "$s0051_cyclablefile_type" = "f" ] || [ "$s0051_cyclablefile_type" = "d" ]; then
+					s0051_cyclefolder_basepath=$(pwd);
+					s0051_cyclefolder_path_raw=".$s0051_cyclablefile""__cycle";
+					s0051_cyclefolder_path="$s0051_cyclefolder_basepath/$s0051_cyclefolder_path_raw";
+					s0051_cyclefolder_pathfile="$s0051_cyclefolder_path/path";
+					if [ ! -f "$s0051_cyclefolder_pathfile" ]; then
+						s_cycle_prep "$s0051_cyclablefile";
+					fi
+					s0051_cycleto_path=$(cat "$s0051_cyclefolder_pathfile");
+					cd "$s0051_cyclefolder_basepath";
+					s_backup "$s0051_cyclablefile" noexit;
+					s0051_time=$(s_snippet_datetime_precise);
+					cd $s0051_cyclefolder_basepath;
+					if  [ -d "$s0051_cycleto_path" ] &&[ ! -f "$s0051_cycleto_path/$s0051_cyclablefile" ] &&  [ ! -d "$s0051_cycleto_path/$s0051_cyclablefile" ]; then
+						s_snippet_choice "File or Folder $s0051_cycleto_path/$s0051_cyclablefile doesn't exist. Create it? "
+						if [ "$s0050_choice" = "yes" ]; then
+							if [ "$s0051_cyclablefile_type" = "f" ]; then
+								s0051_blank_copy_file="yes";
+							elif [ "$s0051_cyclablefile_type" = "d" ]; then
+								s0051_blank_copy_directory="yes";
+							fi
+						else
+							s_message_error_standard "s0051_ERROR: Can't cycle $s0051_cyclablefile_type !";
+							return;
+						fi
+					fi
+					if [ -f "$s0051_cycleto_path/$s0051_cyclablefile" ] || [ "$s0051_blank_copy_file" = "yes" ]; then
+						if [ -f "$s0051_cycleto_path/$s0051_cyclablefile" ]; then
+							s0051_cyclablefile_time_pre=$(stat -c %z "$s0051_cycleto_path/$s0051_cyclablefile");
+							cp "$s0051_cycleto_path/$s0051_cyclablefile" "$s0051_cyclefolder_basepath/."$s0051_cyclablefile"__backup/"$s0051_cyclablefile"_"$s0051_time"_00ori";
+						fi
+						cp "./$s0051_cyclablefile" "$s0051_cycleto_path/";
+					elif [ -d "$s0051_cycleto_path/$s0051_cyclablefile" ] || [ "$s0051_blank_copy_directory" = "yes" ]; then
+						if [ -d "$s0051_cycleto_path/$s0051_cyclablefile" ]; then
+							s0051_cyclablefile_time_pre=$(stat -c %z "$s0051_cycleto_path/$s0051_cyclablefile");
+							mv "$s0051_cycleto_path/$s0051_cyclablefile" "$s0051_cyclefolder_basepath/."$s0051_cyclablefile"__backup/"$s0051_cyclablefile"_"$s0051_time"_00ori";
+						fi
+						cp -r "./$s0051_cyclablefile" "$s0051_cycleto_path/";
+					else
+						s_message_error_standard "s0051_ERROR: Can't cycle $s0051_cyclablefile_type (2) !";
+						return;
+					fi
+					if [ -f "$s0051_cyclefolder_path/owner" ] && [ -f "$s0051_cyclefolder_path/group" ] && [ -f "$s0051_cyclefolder_path/permission" ]; then
+						s0051_owner=$(cat "$s0051_cyclefolder_path/owner");
+						s0051_group=$(cat "$s0051_cyclefolder_path/group");
+						s0051_permission=$(cat "$s0051_cyclefolder_path/permission");
+						echo "s0051_INFO: chmod $s0051_cycleto_path/$s0051_cyclablefile to $s0051_owner:$s0051_group";
+						chown -R "$s0051_owner":"$s0051_group" "$s0051_cycleto_path/$s0051_cyclablefile";
+						echo "s0051_INFO: chown $s0051_cycleto_path/$s0051_cyclablefile to $s0051_permission";
+						chmod -R "$s0051_permission" "$s0051_cycleto_path/$s0051_cyclablefile";
+					fi
+					if [ -f "$s0051_cyclefolder_path/pre" ] && [ -f "$s0051_cyclefolder_path/post" ]; then
+						echo "S2_BASHLOCALUSER_BASEPATH = $S2_BASHLOCALUSER_BASEPATH";
+						"$s0051_cyclefolder_path/pre";
+						"$s0051_cyclefolder_path/post";
+					fi
+					echo "s0051_INFO: $s0051_cyclablefile cycled !";
+					case $2 in
+						"noexit" )
+							echo "s0051_INFO: $s0051_cyclablefile cycled !";
+						;;
+						* )
+							sleep 3;
+							exit;
+						;;
+					esac
+				else
+					s_message_error_standard "s0051_ERROR: Can't access s0051_cyclablefile file / folder ($s0051_cyclablefile) !";
+				fi
+			else
+				s_message_error_standard "s0051_ERROR: please provide a simple file/folder argument (no parent path ($s0051_cyclablefile)) !";
+			fi
+		else
+			s_message_error_standard "s0051_ERROR: please provide a cyclableitem !";
+		fi
+	;;
+esac
+
+
+
+# Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
+# Project: Epiculture
+# Author: Pierre-Mael Cretinon
+# Email: projects2011@3eclipses.com
+# License: GNU GPLv3
+#
+# Notes:
+#
+# License details:
+# <copyright/copyleft>
+# Copyright 2010-2011 (c) Pierre-Mael CRETINON <copyleft@pierremael.net>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# 
+# </copyright/copyleft>
+# Project infos <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<# }}}
+#vim: foldmethod=marker

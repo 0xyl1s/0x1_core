@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+
+urxvt +sb -geometry 152x60+113+23 -e mc -b $*
+

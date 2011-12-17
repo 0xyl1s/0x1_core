@@ -1,0 +1,7 @@
+
+folder='_._3ecl040006';
+folder_group_id='13055';
+folder_permission='2770';
+allowed_users='h1pprod';
+
+groupadd -g $folder_group_id $folder; mkdir $folder; adduser e3pblank $i; chown e3pblank:$i $i; chmod g+s $i;

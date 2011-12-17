@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+crontab -l
+
+# vim: ft=sh

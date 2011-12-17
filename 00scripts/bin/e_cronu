@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+crontab_ec1user_local="$HOME/.ec1/00mu/cron/00config/crontab.ec1local"
+
+if [ -f $crontab_ec1user_local ]; then
+    cat $crontab_ec1user_local | crontab -
+fi
+
+e_cronl
+
+# vim: ft=sh

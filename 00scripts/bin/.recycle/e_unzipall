@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+
+import os
+import glob
+
+def list_files(whichfile="*"):
+    return glob.glob(whichfile)
+
+def get_zipfiles_list():
+    zipfiles_list=list_files("./*.zip")
+    return zipfiles_list if zipfiles_list else exit('no zip files')
+
+def e_unzipall():
+    files_to_unzip=get_zipfiles_list()
+    unzip_command='unzip '
+    for zipfile in files_to_unzip:
+        os.system(unzip_command + zipfile)
+        #print(unzip_command + zipfile)
+
+if __name__ == "__main__":
+    e_unzipall()

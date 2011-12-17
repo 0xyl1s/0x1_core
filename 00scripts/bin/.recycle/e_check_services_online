@@ -1,0 +1,74 @@
+#!/usr/bin/env ruby
+# copyright/copyleft# {{{
+# <copyleft>
+#
+# Copyright 2010 (c) Pierre-Mael CRETINON <copyleft@pierremael.net>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# 
+# </copyleft># }}}
+
+HOSTS_PORTS_RAW =<<here1
+mail.helianova.com 110
+mail.helianova.com 25
+mxb1.helianova.com 25
+web1.helianova.com 80
+suivi.helianova.com 80
+j01.adrhone.com 80
+here1
+
+NETCAT_COMMAND = "netcat -w 8 -z"
+
+def hosts_ports_list
+  HOSTS_PORTS_RAW.split("\n")
+end
+
+def datetime_gen
+  datetime = Time.new.strftime("%F_%H:%M:%S")
+end
+
+def status_check_process(hosts_ports)
+  for i in hosts_ports
+    host, port = i.scan(/[\w\.]+/)
+    datetime = datetime_gen()
+    print "#{datetime} > checking #{host}:#{port} =>> "
+    if system("#{NETCAT_COMMAND} #{host} #{port}")
+      puts "OK !"
+    else
+      puts "!!!!!! ERROR !!!!!!"
+      send_email_on_status_check_error(host, port, datetime)
+    end
+  end
+  puts
+end
+
+def send_email_on_status_check_error(host, port, datetime)
+  to = 'alert@helianova.com, pierremael.cretinon@gmail.com'
+  subject = "E! #{host}:#{port}"
+  message = "#{datetime} >>>> ERROR accessing port #{port} on #{host} << from helist005 >>"
+  %x{echo '#{message}' | mail '#{to}' -s '#{subject}' -a 'FROM:alert@helianova'}
+end
+
+def status_check(sleep_delay = 30)
+  sleep_delay = ARGV[0].to_i if ARGV[0]
+  hosts_ports = hosts_ports_list()
+  while true
+    status_check_process(hosts_ports)
+  sleep sleep_delay
+  end
+end
+
+status_check()
+
+#vim: foldmethod=marker

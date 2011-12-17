@@ -1,0 +1,119 @@
+#!/bin/bash
+
+##
+#   Author: IL'dar AKHmetgaleev aka AkhIL
+#   e-mail: akhilman at gmail dot com
+#   web:    http://akhilman.blogspot.com
+#
+#   This code is licensed under 
+#   Creative Commons Attribution 3.0 Unported License
+#   http://creativecommons.org/licenses/by/3.0/
+##
+
+version=200711142030
+flietype=
+framerate=23.97
+framewidth=
+frameheight=
+files=
+
+noidentify ()
+{
+    echo "Can't run identify. Please install ImageMagick." > /dev/stderr
+    exit 1
+}
+
+[ x"$(identify 2>&1)" = x ] && noidentify
+
+showhelp ()
+{
+    cat << EOF
+`basename $0` by AkhIL ( http://akhil.nm.ru )
+version $version 
+	 mail me to akhilman at gmail dot com
+
+usage:
+    `basename $0` [options] image1 image2 ... > framelist
+    or
+    ls * | `basename $0` [options] > framelist
+options:
+    -r fps	Set frame rate (default = 25)
+    -W pixels	Set images width (autodetect by default)
+    -H pixels	Set images height (autodetect by default)
+    -f format	Set images format (autodetect by default)
+EOF
+    exit
+}
+
+#[ $# -eq 0 ] && showhelp 
+
+while [ $# -gt 0 ]
+do
+    case $1 in
+	-f)
+	    filetype=$2
+	    shift
+	    shift;;
+	-r)
+	    framerate=$2
+	    shift
+	    shift;;
+	-W)
+	    framewidth=$2
+	    shift
+	    shift;;
+	-H)
+	    frameheight=$2
+	    shift
+	    shift;;
+	-h | --help)
+	    showhelp;;
+	*)
+	    files="$files $1"
+	    shift;;
+    esac
+
+done
+
+firstframe=true
+
+if [ x"$files" = x ]
+then
+    files=`cat /dev/stdin`
+fi
+
+for f in $files
+do
+    if $firstframe
+    then
+	[ `echo $f | head -c 1` = / ] && prefix="" || prefix=`pwd`/
+	ident=`identify $f` || exit $?
+	if [ x"$filetype" = x ]
+	then
+	    echo `echo $ident | awk '{print $2}'`LIST
+	else
+	    echo $filetype
+	fi
+	echo \# Framerate
+	echo $framerate
+	echo \# Width
+	if [ x"$framewidth" = x ]
+	then
+	    echo $ident | sed 's/.* \([0-9]*\)x[0-9]* .*/\1/'
+	else
+	    echo $framewidth
+	fi
+	echo \# Height
+	if [ x"$frameheight" = x ]
+	then
+	    echo $ident | sed 's/.* [0-9]*x\([0-9]*\) .*/\1/'
+	else
+	    echo $frameheight
+	fi
+	echo \# List of images
+	firstframe=false
+    fi
+    echo $prefix$f
+
+done
+
