@@ -8,6 +8,7 @@ mu_path = %x"echo ~/.ec1/00mu".chomp!
 sync_pull_mu_path = "#{mu_path}/00sync/pull"
 sync_pull_logs_filepath = "#{mu_path}/00logs/sync_pull"
 system "echo #{date} >> #{sync_pull_logs_filepath}"
+system "echo 'BUGGED' >> #{sync_pull_logs_filepath}"
 repositories = (Dir.entries(sync_pull_mu_path) - %w{ . ..})
 repositories.each {|repository|
   repository_path = "#{sync_pull_mu_path}/#{repository}"
