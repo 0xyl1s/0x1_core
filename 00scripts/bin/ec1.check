@@ -8,5 +8,6 @@ then
 fi
 
 echo "EC1_CHECK => 1st stage done !!"
+ec1.check_stage2 &
 
 # vim: ft=sh
