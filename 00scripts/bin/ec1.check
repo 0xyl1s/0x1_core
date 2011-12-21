@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+rvm_type=$(source $HOME/.bashrc ; type rvm | head -1)
+if [[ $rvm_type != 'rvm is a function' ]]
+then
+    echo "EC1_ERROR => RVM is not a function."
+    exit 1
+fi
+
+echo "EC1_CHECK => 1st stage done !!"
+
+# vim: ft=sh
