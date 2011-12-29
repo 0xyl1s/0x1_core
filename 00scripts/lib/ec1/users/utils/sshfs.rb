@@ -18,7 +18,7 @@ end
 def mount
   @shares_infos.each do |share, share_infos|
     puts "mounting #{share_infos[:local_path]}"
-    system "(sshfs #{share_infos[:source]} #{share_infos[:local_path]} #{share_infos[:options]})"
+    system "sshfs #{share_infos[:source]} #{share_infos[:local_path]} #{share_infos[:options]} &"
   end
 end
 
