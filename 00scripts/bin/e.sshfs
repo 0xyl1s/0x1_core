@@ -7,7 +7,7 @@ require 'ec1/users/utils/sshfs.rb'
 
 USAGE = <<-heredoc
 \n============================================================
-==   ec1_users > utils > Security > SSHAgent              ==
+==   ec1_users > utils > Security > SSHFS                 ==
 ============================================================
 e.sshfs allows to manage local sshfs shares.
 Main functions :
@@ -25,6 +25,8 @@ heredoc
 
 main_function = ARGV.shift
 other_arguments = *ARGV
+
+system "e.agent"
 
 sshfs = Sshfs.new
 
