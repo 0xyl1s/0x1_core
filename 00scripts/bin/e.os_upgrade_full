@@ -2,7 +2,7 @@
 # encoding: utf-8
 # tested with ruby 1.9.3
 
-system("date; apt-get update && apt-get upgrade -y")
+system("date; aptitude update && aptitude full-upgrade -y")
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
 # Project: Epiculture
