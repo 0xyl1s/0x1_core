@@ -3,5 +3,6 @@
 echo -n "SSH access public key ? "
 read ssh_access_public_key
 echo -n "$ssh_access_public_key" >> $HOME/.ssh/authorized_keys
+chmod 600 $HOME/.ssh/authorized_keys
 
 # vim: ft=sh
