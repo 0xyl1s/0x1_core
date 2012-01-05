@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+# tested with ruby 1.9.3
+
+#TODO: big refactoring...
+date = Time.now
+puts date
+mu_path = %x"echo ~/.ec1/00mu".chomp!
+sync_autocommit_mu_path = "#{mu_path}/00sync/autocommit"
+sync_autocommit_logs_filepath = "#{mu_path}/00logs/autocommit"
+system "echo #{date} >> #{sync_autocommit_logs_filepath}"
+system "echo 'BUGGED' >> #{sync_autocommit_logs_filepath}"
+repositories = (Dir.entries(sync_autocommit_mu_path) - %w{ . ..})
+repositories.each {|repository|
+  repository_path = "#{sync_autocommit_mu_path}/#{repository}"
+  begin
+    system "(cd #{repository_path} ; git commit -am '${date})"
+    system "echo \"autocommitted >> #{repository_path}\" >> #{sync_autocommit_logs_filepath}"
+  rescue
+    system "echo \"ERROR >> #{repository_path}\" >> #{sync_autocommit_logs_filepath}"
+  end
+}
+
+# ____________________________________________________________________
+# ᨊ ᨉ  LICENSE ᨊ ᨉ ᨊ ᨉ ᨊ ᨉ ᨊ ᨉ ᨊ ᨉ ᨊ ᨉ ᨊ ᨉ ᨊ ᨉ ᨊ ᨉ ᨊ ᨉ ᨊ ᨉ ᨊ ᨉ ᨊ ᨉ ᨊ ᨉ
+# This file is part of the libre project Epiculture, distributed under
+# the GNU GPLv3 license ( www.epiculture.org/ec1_core/LICENSE )
+# Copyright 2005-2012 Pierre-Maël Crétinon
+# ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+#vim: foldmethod=marker
