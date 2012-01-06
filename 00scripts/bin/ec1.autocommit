@@ -14,8 +14,8 @@ repositories = (Dir.entries(sync_autocommit_mu_path) - %w{ . ..})
 repositories.each {|repository|
   repository_path = "#{sync_autocommit_mu_path}/#{repository}"
   begin
+    system "echo \"autocommitted (unchecked) >> #{repository_path}\" >> #{sync_autocommit_logs_filepath}"
     system "(cd #{repository_path} ; git add . ; git commit -am \"#{date}\")"
-    system "echo \"autocommitted >> #{repository_path}\" >> #{sync_autocommit_logs_filepath}"
   rescue
     system "echo \"ERROR >> #{repository_path}\" >> #{sync_autocommit_logs_filepath}"
   end
