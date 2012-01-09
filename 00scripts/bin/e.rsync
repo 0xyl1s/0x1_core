@@ -6,7 +6,7 @@ options_unsafe = '-avh'
 command_safe = "rsync #{options_safe} --no-o --no-g --stats --progress #{ARGV.join(' ')}"
 command_unsafe = "rsync #{options_unsafe} --no-o --no-g --stats --progress #{ARGV.join(' ')}"
 system(command_safe)
-puts command_unsafe
+puts "\nec1>>> unsafe command:\n#{command_unsafe}\n"
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
 # Project: Epiculture
