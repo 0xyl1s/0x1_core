@@ -2,8 +2,8 @@
 # encoding: utf-8
 
 command = "ssh -XC #{ARGV.join(' ')}"
+puts "ec1>>> #{command}"
 system(command)
-puts command
 
 # ____________________________________________________________________
 # >>>>>  projet epiculture/ec1   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#{{{
