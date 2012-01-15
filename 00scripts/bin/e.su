@@ -5,7 +5,10 @@
 raise "ERROR: please only provide a username to log to (or none for root)" unless ARGV.size <= 1
 arguments = ARGV.empty? ? nil : ARGV.join
 
-system "su - #{arguments}"
+until system "su - #{arguments}"
+  puts "ERROR (#{$?}): wrong authentication, please retry (hit ^c before the password prompt to quit)..."
+  sleep 2
+end
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
 # Project: Epiculture
