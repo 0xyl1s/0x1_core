@@ -6,7 +6,8 @@ raise "ERROR: please only provide a username to log to (or none for root)" unles
 arguments = ARGV.empty? ? nil : ARGV.join
 
 until system "su - #{arguments}"
-  puts "ERROR (#{$?}): wrong authentication, please retry (hit ^c before the password prompt to quit)..."
+  puts "ERROR (#{$?}): please retry ..."
+  puts "(hit ^c before the password prompt to quit)"
   sleep 2
 end
 
