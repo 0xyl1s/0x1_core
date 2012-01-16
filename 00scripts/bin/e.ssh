@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+command = "ssh -XC #{ARGV.join(' ')}"
+puts "ec1>>> #{command}"
+system(command)
+
+# ____________________________________________________________________
+# >>>>>  projet epiculture/ec1   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#{{{
+# Sources, Infos & Contact : http://www.epiculture.org
+# Author: Pierre-Maël Crétinon
+# License: GNU GPLv3 ( www.epiculture.org/ec1/LICENSE )
+# Copyright: 2010-2012 Pierre-Maël Crétinon
+# Sponsor: studio Helianova - http://studio.helianova.com
+# ――――――――――――――――――――――――――――――――――――――#}}}
+#vim: foldmethod=marker

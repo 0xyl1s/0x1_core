@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+# tested with ruby 1.9.3
+
+# TODO: refactoring using oop
+# TODO: logs management
+# TODO: tests
+
+date = Time.now
+puts date
+mu_path = %x"echo ~/.ec1/00mu".chomp!
+sync_pull_mu_path = "#{mu_path}/00sync/pull.manual"
+sync_pull_logs_filepath = "#{mu_path}/00logs/sync_pull.manual"
+system "echo #{date} >> #{sync_pull_logs_filepath}"
+repositories = (Dir.entries(sync_pull_mu_path) - %w{ . .. })
+repositories.each {|repository|
+  repository_path = "#{sync_pull_mu_path}/#{repository}"
+  begin
+    system "(cd #{repository_path} ; git pull)"
+    system "echo \"pulled >> #{repository_path}\" >> #{sync_pull_logs_filepath}"
+  rescue
+    system "echo \"ERROR >> #{repository_path}\" >> #{sync_pull_logs_filepath}"
+  end
+}
+
+# ____________________________________________________________________
+# >>>>>  projet epiculture/ec1   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#{{{
+# Sources, Infos & Contact : http://www.epiculture.org
+# Author: Pierre-Maël Crétinon
+# License: GNU GPLv3 ( www.epiculture.org/ec1/LICENSE )
+# Copyright: 2010-2012 Pierre-Maël Crétinon
+# Sponsor: studio Helianova - http://studio.helianova.com
+# ――――――――――――――――――――――――――――――――――――――#}}}
+# vim: 
