@@ -1,4 +1,4 @@
-0xyl1s ec1_core ¬«««
+0xyl1s ¬««« Core
 ===========================
 
 0xyl1s ¬««« cultivating digital fields
