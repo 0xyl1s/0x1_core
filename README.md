@@ -25,7 +25,7 @@ Legal
 =====
 ![logo GPLv3][image2]
 
-0xyl1s is Copyright 2005-2011 Pierre-Mael Cretinon. It is free software, and may be distributed under the terms specified in the [GNU GPLv3][link4] license, see [LICENSE][link2] for more details
+0xyl1s is Copyright 2005-2012 Pierre-Mael Cretinon. It is free software, and may be distributed under the terms specified in the [GNU GPLv3][link4] license, see [LICENSE][link2] for more details
 
 [image1]: http://studio.helianova.com/helianova_logo_03_0180.png
 [image2]: http://www.gnu.org/graphics/gplv3-88x31.png
