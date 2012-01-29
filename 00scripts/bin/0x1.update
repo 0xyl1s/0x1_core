@@ -2,22 +2,11 @@
 # encoding: utf-8
 # tested with ruby 1.9.3
 
-
-
-#ec1_distrib_path="$HOME/.ec1/ec1_distrib"
-#if [ -d $ec1_distrib_path ]; then
-    #echo "git pulling $ec1_distrib_path"
-    #cd $ec1_distrib_path ; git pull
-#else
-    #echo "ERROR : can't perform git pulling on $ec1_distrib_path"
-#fi
-
-
-module Ec1 module Users
+module X module Users
 
 class Update
-require 'ec1/lib/toolkit/standard.rb'
-include Ec1::Lib::Toolkit::Standard
+require '0x1/lib/toolkit/standard.rb'
+include X::Lib::Toolkit::Standard
 
 def initialize
   @git_path = File.expand_path(__FILE__ + '/../../')
@@ -31,7 +20,7 @@ end
 
 end end
 
-Ec1::Users::Update.new.run
+X::Users::Update.new.run
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
 # Project: Epiculture

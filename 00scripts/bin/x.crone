@@ -2,7 +2,7 @@
 # encoding: utf-8
 # tested with ruby 1.9.3
 
-system "gvim -f #{ENV['HOME']}/.ec1/00mu/cron/00config/crontab.ec1local ; e.cronu"
+system "gvim -f #{ENV['HOME']}/.0x1/00mu/cron/00config/crontab.0x1local ; e.cronu"
 
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{

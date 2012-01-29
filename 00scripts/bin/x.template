@@ -2,12 +2,12 @@
 # encoding: utf-8
 # tested with ruby 1.9.2
 
-module Ec1 module Users module Utils
-require 'ec1/users/utils/templates.rb'
+module X module Users module Utils
+require '0x1/users/utils/templates.rb'
 
 USAGE = <<-heredoc
 \n============================================================
-==   ec1_users > utils > Templates                        ==
+==   0x1_users > utils > Templates                        ==
 ============================================================
 e_tr allows new file creation based on templates.
 Main functions :
