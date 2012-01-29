@@ -1,17 +1,17 @@
 # encoding: utf-8
 # tested with ruby 1.9.2
 
-module Ec1 module Users module Utils
+module X module Users module Utils
 
 class Templates
-require 'ec1/lib/toolkit/full.rb'
-include Ec1::Lib::Toolkit::Standard
+require '0x1/lib/toolkit/full.rb'
+include X::Lib::Toolkit::Standard
   def initialize(new_file, type='ruby_pima_copyleft')
     @new_file = new_file
   end
   def create
     abort "file #{@new_file} exists already" if File.exist?(@new_file)
-    ruby_template_path='/.ec1/00scripts/ec1_users/data/templates/ruby/template_ruby'
+    ruby_template_path='/.0x1/00scripts/0x1_users/data/templates/ruby/template_ruby'
     ruby_template = open(ruby_template_path, &:read)
     ec1__file_save(ruby_template, @new_file, '700')
   end
@@ -22,7 +22,7 @@ include Ec1::Lib::Toolkit::Standard
     puts <<-hdhelp
     create templates.
     usage :
-    Ec1::Users::Template.new(<template_type>, [<template_options>])
+    X::Users::Template.new(<template_type>, [<template_options>])
     hdhelp
   end
   def catfly

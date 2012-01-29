@@ -1,11 +1,11 @@
 # encoding: utf-8
 # tested with ruby 1.9.3
 
-module Ec1 module Users module Utils
+module X module Users module Utils
 
 class Sshfs
-require 'ec1/lib/toolkit/standard.rb'
-include Ec1::Lib::Toolkit::Standard
+require '0x1/lib/toolkit/standard.rb'
+include X::Lib::Toolkit::Standard
 
 def initialize
   shares_infos()
@@ -43,7 +43,7 @@ end
 
 def read_local_defshares
   read_defshares_raw = []
-  ec1__dir_ls("#{ENV_HOME}/.ec1/00mu/sshfs/00shares/active").each {|share_file|
+  ec1__dir_ls("#{ENV_HOME}/.0x1/00mu/sshfs/00shares/active").each {|share_file|
   filename = File.basename(share_file)
   inter = ec1__file_read(share_file)
   full_desc = "#{filename} #{inter}"
