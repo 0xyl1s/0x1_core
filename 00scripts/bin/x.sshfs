@@ -26,7 +26,7 @@ heredoc
 main_function = ARGV.shift
 other_arguments = *ARGV
 
-system "e.agent"
+system "x.agent"
 
 sshfs = Sshfs.new
 
