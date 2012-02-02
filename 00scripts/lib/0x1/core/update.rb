@@ -1,14 +1,21 @@
-#!/usr/bin/env ruby
 # encoding: utf-8
 # tested with ruby 1.9.3
 
 module X module Core
-require_relative '../lib/0x1/core/update.rb'
+require_relative '../0x1_lib.helper.rb'
 
-Update.new.run
+class Update
+def initialize
+  x__load_modules([:standard])
+  @git_path = File.expand_path(__FILE__ + '/../../')
+end
+
+def run
+  system "cd #{@git_path}; git pull"
+end
+end
 
 end end
-
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
 # Project: Epiculture

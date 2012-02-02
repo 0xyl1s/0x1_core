@@ -1,11 +1,20 @@
-#!/usr/bin/env ruby
 # encoding: utf-8
 # tested with ruby 1.9.3
 
 module X module Core
-require_relative '../lib/0x1/core/update.rb'
+require_relative '../0x1_lib.helper.rb'
 
-Update.new.run
+class Infos
+def initialize(i_length_raw=nil, b_lowercase=false)
+  x__load_modules([:standard])
+end
+
+def version
+  #version = File.read(File.expand_path(__FILE__ + '/../../version'))
+  version = x__file_read(File.expand_path(__FILE__ + '/../../version'))
+  puts version
+end
+end
 
 end end
 

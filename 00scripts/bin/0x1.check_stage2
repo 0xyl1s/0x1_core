@@ -3,26 +3,12 @@
 # tested with ruby 1.9.3
 
 module X module Core
+require_relative '../lib/0x1/core/check.rb'
 
-class Check
-require '0x1/lib/toolkit/standard.rb'
-include X::Lib::Toolkit::Standard
-
-def run
-  puts 'here weare'
-end
-
-def version
-  #version = File.read(File.expand_path(__FILE__ + '/../../version'))
-  version = x__file_read(File.expand_path(__FILE__ + '/../../version'))
-  puts version
-end
-
-end
+Check.new.run
 
 end end
 
-X::Users::Infos.new.run
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
 # Project: Epiculture
@@ -51,4 +37,4 @@ X::Users::Infos.new.run
 # 
 # </copyright/copyleft>
 # Project infos <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<# }}}
-#vim: foldmethod=marker
+#vim: 

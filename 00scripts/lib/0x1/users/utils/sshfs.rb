@@ -2,12 +2,11 @@
 # tested with ruby 1.9.3
 
 module X module Users module Utils
+require_relative '../../0x1_lib.helper.rb'
 
 class Sshfs
-require '0x1/lib/toolkit/standard.rb'
-include X::Lib::Toolkit::Standard
-
 def initialize
+  x__load_modules([:standard])
   shares_infos()
 end
 
@@ -51,7 +50,6 @@ def read_local_defshares
   }
   return read_defshares_raw
 end
-
 end
 
 end end end

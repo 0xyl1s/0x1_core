@@ -3,7 +3,7 @@
 # tested with ruby 1.9.2
 
 module X module Users module Utils
-require '0x1/users/utils/templates.rb'
+require_relative '../../../../lib/0x1/users/utils/templates.rb'
 require 'minitest/spec.rb'
 require 'minitest/autorun.rb'
 

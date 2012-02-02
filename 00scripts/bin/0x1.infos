@@ -3,22 +3,12 @@
 # tested with ruby 1.9.3
 
 module X module Users
+require_relative '../lib/0x1/core/infos.rb'
 
-class Infos
-require '0x1/lib/toolkit/standard.rb'
-include X::Lib::Toolkit::Standard
-
-def version
-  #version = File.read(File.expand_path(__FILE__ + '/../../version'))
-  version = x__file_read(File.expand_path(__FILE__ + '/../../version'))
-  puts version
-end
-
-end
+Infos.new.version
 
 end end
 
-X::Users::Infos.new.version
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
 # Project: Epiculture

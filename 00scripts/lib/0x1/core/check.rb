@@ -1,23 +1,26 @@
-#!/usr/bin/env ruby
 # encoding: utf-8
 # tested with ruby 1.9.3
 
+module X module Core
+require_relative '../0x1_lib.helper.rb'
 
-module X module Users
-
-class Datetime
-require '0x1/lib/toolkit/standard.rb'
-include X::Lib::Toolkit::Standard
-
-def initialize
-  puts x__datetime
+class Check
+def initialize(i_length_raw=nil, b_lowercase=false)
+  x__load_modules([:standard])
 end
 
+def run
+  puts 'here weare'
+end
+
+def version
+  version = x__file_read(File.expand_path(__FILE__ + '/../../version'))
+  puts version
+end
 end
 
 end end
 
-X::Users::Datetime.new
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
 # Project: Epiculture
@@ -46,4 +49,4 @@ X::Users::Datetime.new
 # 
 # </copyright/copyleft>
 # Project infos <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<# }}}
-#vim: foldmethod=marker
+#vim: 

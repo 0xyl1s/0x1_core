@@ -2,32 +2,36 @@
 # tested with ruby 1.9.2
 
 module X module Users module Utils
+require_relative '../../0x1_lib.helper.rb'
 
 class Templates
-require '0x1/lib/toolkit/full.rb'
-include X::Lib::Toolkit::Standard
-  def initialize(new_file, type='ruby_pima_copyleft')
-    @new_file = new_file
-  end
-  def create
-    abort "file #{@new_file} exists already" if File.exist?(@new_file)
-    ruby_template_path='/.0x1/00scripts/0x1_users/data/templates/ruby/template_ruby'
-    ruby_template = open(ruby_template_path, &:read)
-    x__file_save(ruby_template, @new_file, '700')
-  end
-  def launch_editor
-    system("gvim #{@new_file}")
-  end
-  def help
-    puts <<-hdhelp
-    create templates.
-    usage :
-    X::Users::Template.new(<template_type>, [<template_options>])
-    hdhelp
-  end
-  def catfly
-    'foo'
-  end
+def initialize(new_file, type='ruby_pima_copyleft')
+  x__load_modules([:standard])
+  @new_file = new_file
+end
+
+def create
+  abort "file #{@new_file} exists already" if File.exist?(@new_file)
+  ruby_template_path='/.0x1/00scripts/0x1_users/data/templates/ruby/template_ruby'
+  ruby_template = open(ruby_template_path, &:read)
+  x__file_save(ruby_template, @new_file, '700')
+end
+
+def launch_editor
+  system("gvim #{@new_file}")
+end
+
+def help
+  puts <<-hdhelp
+  create templates.
+  usage :
+  X::Users::Template.new(<template_type>, [<template_options>])
+  hdhelp
+end
+
+def catfly
+  'foo'
+end
 end
 
 end end end

@@ -2,12 +2,11 @@
 # tested with ruby 1.9.3
 
 module X module Users module Utils
-require '0x1/lib/toolkit/standard.rb'
-include X::Lib::Toolkit::Standard
+require_relative '../../0x1_lib.helper.rb'
 
 class Hash
-
 def initialize
+  x__load_modules([:standard])
 end
 
 private
