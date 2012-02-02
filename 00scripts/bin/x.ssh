@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 command = "ssh -XC #{ARGV.join(' ')}"
-puts "ec1>>> #{command}"
+puts "0x1>>> #{command}"
 system(command)
 
 # ____________________________________________________________________

@@ -2,8 +2,8 @@
 # encoding: utf-8
 # tested with ruby 1.9.2
 
-module Ec1 module Users module Utils
-require 'ec1/users/utils/templates.rb'
+module X module Users module Utils
+require '0x1/users/utils/templates.rb'
 require 'minitest/spec.rb'
 require 'minitest/autorun.rb'
 

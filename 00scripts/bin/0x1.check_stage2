@@ -2,11 +2,11 @@
 # encoding: utf-8
 # tested with ruby 1.9.3
 
-module Ec1 module Core
+module X module Core
 
 class Check
-require 'ec1/lib/toolkit/standard.rb'
-include Ec1::Lib::Toolkit::Standard
+require '0x1/lib/toolkit/standard.rb'
+include X::Lib::Toolkit::Standard
 
 def run
   puts 'here weare'
@@ -14,7 +14,7 @@ end
 
 def version
   #version = File.read(File.expand_path(__FILE__ + '/../../version'))
-  version = ec1__file_read(File.expand_path(__FILE__ + '/../../version'))
+  version = x__file_read(File.expand_path(__FILE__ + '/../../version'))
   puts version
 end
 
@@ -22,7 +22,7 @@ end
 
 end end
 
-Ec1::Users::Infos.new.run
+X::Users::Infos.new.run
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
 # Project: Epiculture

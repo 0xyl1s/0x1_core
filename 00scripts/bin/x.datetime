@@ -3,21 +3,21 @@
 # tested with ruby 1.9.3
 
 
-module Ec1 module Users
+module X module Users
 
 class Datetime
-require 'ec1/lib/toolkit/standard.rb'
-include Ec1::Lib::Toolkit::Standard
+require '0x1/lib/toolkit/standard.rb'
+include X::Lib::Toolkit::Standard
 
 def initialize
-  puts e__datetime
+  puts x__datetime
 end
 
 end
 
 end end
 
-Ec1::Users::Datetime.new
+X::Users::Datetime.new
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
 # Project: Epiculture

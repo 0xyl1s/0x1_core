@@ -5,7 +5,7 @@
 #TODO: big refactoring...
 date = Time.now
 puts date
-mu_path = %x"echo ~/.ec1/00mu".chomp!
+mu_path = %x"echo ~/.0x1/00mu".chomp!
 sync_autocommit_mu_path = "#{mu_path}/00sync/autocommit"
 sync_autocommit_logs_filepath = "#{mu_path}/00logs/autocommit"
 system "echo #{date} >> #{sync_autocommit_logs_filepath}"

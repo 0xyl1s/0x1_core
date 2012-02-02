@@ -2,15 +2,15 @@
 # encoding: utf-8
 # tested with ruby 1.9.3
 
-module Ec1 module Users
+module X module Users
 
 class Infos
-require 'ec1/lib/toolkit/standard.rb'
-include Ec1::Lib::Toolkit::Standard
+require '0x1/lib/toolkit/standard.rb'
+include X::Lib::Toolkit::Standard
 
 def version
   #version = File.read(File.expand_path(__FILE__ + '/../../version'))
-  version = ec1__file_read(File.expand_path(__FILE__ + '/../../version'))
+  version = x__file_read(File.expand_path(__FILE__ + '/../../version'))
   puts version
 end
 
@@ -18,7 +18,7 @@ end
 
 end end
 
-Ec1::Users::Infos.new.version
+X::Users::Infos.new.version
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
 # Project: Epiculture

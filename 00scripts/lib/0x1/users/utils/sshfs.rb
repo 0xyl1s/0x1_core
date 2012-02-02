@@ -43,9 +43,9 @@ end
 
 def read_local_defshares
   read_defshares_raw = []
-  ec1__dir_ls("#{ENV_HOME}/.0x1/00mu/sshfs/00shares/active").each {|share_file|
+  x__dir_ls("#{ENV_HOME}/.0x1/00mu/sshfs/00shares/active").each {|share_file|
   filename = File.basename(share_file)
-  inter = ec1__file_read(share_file)
+  inter = x__file_read(share_file)
   full_desc = "#{filename} #{inter}"
   read_defshares_raw << full_desc
   }

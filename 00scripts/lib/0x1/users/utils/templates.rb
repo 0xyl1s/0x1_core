@@ -13,7 +13,7 @@ include X::Lib::Toolkit::Standard
     abort "file #{@new_file} exists already" if File.exist?(@new_file)
     ruby_template_path='/.0x1/00scripts/0x1_users/data/templates/ruby/template_ruby'
     ruby_template = open(ruby_template_path, &:read)
-    ec1__file_save(ruby_template, @new_file, '700')
+    x__file_save(ruby_template, @new_file, '700')
   end
   def launch_editor
     system("gvim #{@new_file}")

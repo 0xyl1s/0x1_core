@@ -1,27 +1,27 @@
 #!/usr/bin/env bash
 
-source ~/.ec1/ec1_lib/ec1/lib/toolkit/standard.bash
+source ~/.0x1/0x1_lib/0x1/lib/toolkit/standard.bash
 
 rvm_type=$(source $HOME/.bashrc ; type rvm | head -1)
 if [[ $rvm_type == 'rvm is a function' ]]
 then
-    echo "EC1INFO => RVM is a function." >&1
+    echo "XINFO => RVM is a function." >&1
 else
-    echo "EC1ERROR => RVM is not a function." >&2
+    echo "XERROR => RVM is not a function." >&2
     exit 1
 fi
 
 ruby_version=$(ruby -e 'puts RUBY_VERSION')
 if [[ $ruby_version == '1.9.2' ]]
 then
-    echo "EC1INFO => ruby version is ${ruby_version}" >&1
+    echo "XINFO => ruby version is ${ruby_version}" >&1
 else
-    echo "EC1ERROR => ruby version is ${ruby_version}" >&2
+    echo "XERROR => ruby version is ${ruby_version}" >&2
     exit 1
 fi
 
 
-echo "EC1INFO => 1st stage done !!"
-#ec1.check_stage2 &
+echo "XINFO => 1st stage done !!"
+#0x1.check_stage2 &
 
 # vim: ft=sh
