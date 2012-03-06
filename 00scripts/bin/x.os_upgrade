@@ -2,7 +2,10 @@
 # encoding: utf-8
 # tested with ruby 1.9.3
 
-system("date; aptitude update > /dev/null && aptitude safe-upgrade -y")
+system("date ;"+
+       "aptitude update > /dev/null &&"+
+       "aptitude safe-upgrade -y &&"+
+       "aptitude clean")
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
 # Project: Epiculture
