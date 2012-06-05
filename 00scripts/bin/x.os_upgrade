@@ -2,9 +2,10 @@
 # encoding: utf-8
 # tested with ruby 1.9.3
 
-system("date ;"+
+system("echo '________________________________________';"+
+       "date ;"+
        "aptitude update > /dev/null &&"+
-       "aptitude safe-upgrade -y &&"+
+       "DEBIAN_FRONTEND=noninteractive aptitude safe-upgrade -y &&"+
        "aptitude clean")
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
