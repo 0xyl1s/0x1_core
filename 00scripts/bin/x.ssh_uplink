@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+module X module Users
+
+class SshUplink
+  
+  def initialize
+    check_process = `ps aux|egrep -v egrep|egrep -i "ssh.*uplink"`
+    if x__process_last_exit_status_zero
+      puts "process is running"
+    else
+      puts "no running process. Executing ssh uplink..."
+      system "ssh -fN uplink"
+    end
+  end
+  
+end
+
+SshUplink.new
+
+end end
