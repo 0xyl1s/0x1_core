@@ -1,10 +1,11 @@
 # encoding: utf-8
 # tested with ruby 1.9.3
 
-X_LIB_PATH = File.join(File.expand_path('~'), '.0x1/00mu/00sourcing/0x1_lib')
+X_LIB_PATH = "#{Dir.home}/.0x1/00mu/00sourcing/0x1_lib"
 
 def x__load_modules(x__modules2load)
-  abort "XERROR: x__modules2load must be an arry (#{x__modules2load.class})" unless x__modules2load.is_a?(Array)
+  abort "XERROR: x__modules2load must be an arry (#{x__modules2load.class})" \
+  unless x__modules2load.is_a?(Array)
   x__modules2load.each do |module2load|
     case module2load
     when :standard
