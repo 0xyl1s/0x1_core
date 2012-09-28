@@ -2,10 +2,10 @@
 # encoding: utf-8
 # tested with ruby 1.9.3
 
-module X module Users module Utils
-require_relative '../lib/0x1/users/utils/sshfs.rb'
+module X module Xtra module Users
+  require_relative '../lib/0x1/users/sshfs.rb'
 
-USAGE = <<-heredoc
+  USAGE = <<-heredoc
 \n============================================================
 ==   0x1_users > utils > Security > SSHFS                 ==
 ============================================================
@@ -21,27 +21,27 @@ Main functions :
     displays this help screen
 
 ============================================================\n
-heredoc
+  heredoc
 
-main_function = ARGV.shift
-other_arguments = *ARGV
+  main_function = ARGV.shift
+  other_arguments = *ARGV
 
-system "x.agent"
+  system "x.agent"
 
-sshfs = Sshfs.new
+  sshfs = Sshfs.new
 
-case main_function
-when 'help', '-h'
-  puts USAGE
-when 'list', '-l', nil
-  sshfs.list_shares
-when 'mount', '-m'
-  sshfs.mount
-when 'umount', '-u'
-  sshfs.umount
-else
-  abort "#{USAGE}"
-end
+  case main_function
+  when 'help', '-h'
+    puts USAGE
+  when 'list', '-l', nil
+    sshfs.list_shares
+  when 'mount', '-m'
+    sshfs.mount
+  when 'umount', '-u'
+    sshfs.umount
+  else
+    abort "#{USAGE}"
+  end
 
 end end end
 
