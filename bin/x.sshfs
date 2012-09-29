@@ -2,8 +2,8 @@
 # encoding: utf-8
 # tested with ruby 1.9.3
 
-module X module Xtra module Users
-  require_relative '../lib/0x1/users/sshfs.rb'
+module X module Core module Users
+  require_relative '../lib/0x1_core/users/sshfs.rb'
 
   USAGE = <<-heredoc
 \n============================================================

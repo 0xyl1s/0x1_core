@@ -2,14 +2,18 @@
 # encoding: utf-8
 # tested with ruby 1.9.3
 
-raise "ERROR: please only provide a username to log to (or none for root)" unless ARGV.size <= 1
-arguments = ARGV.empty? ? nil : ARGV.join
+module X module Core module Users
 
-until system "su - #{arguments}"
-  puts "ERROR (#{$?}): please retry ..."
-  puts "(hit ^c before the password prompt to quit)"
-  sleep 2
-end
+  raise "ERROR: please only provide a username to log to (or none for root)" unless ARGV.size <= 1
+  arguments = ARGV.empty? ? nil : ARGV.join
+
+  until system "su - #{arguments}"
+    puts "ERROR (#{$?}): please retry ..."
+    puts "(hit ^c before the password prompt to quit)"
+    sleep 2
+  end
+
+end end end
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
 # Project: Epiculture

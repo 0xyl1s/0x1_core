@@ -1,25 +1,28 @@
 # encoding: utf-8
 # tested with ruby 1.9.3
 
-module X module Core
-require_relative '../0x1_lib.helper.rb'
+module X module Core module Users
+  require_relative '../0x1_lib.helper.rb'
 
-class Check
-def initialize(i_length_raw=nil, b_lowercase=false)
-  x__load_modules([:standard])
-end
+  class Check
+    include X::Lib::Toolkit::Standard
 
-def run
-  puts 'here weare'
-end
+    def initialize(i_length_raw=nil, b_lowercase=false)
+      @x_lib_path_base = X_LIB_PATH_BASE
+      x__lib_load_modules([:standard])
+    end
 
-def version
-  version = x__file_read(File.expand_path(__FILE__ + '/../../version'))
-  puts version
-end
-end
+    def run
+      puts 'here weare'
+    end
 
-end end
+    def version
+      version = x__file_read(File.expand_path(__FILE__ + '/../../version'))
+      puts version
+    end
+  end
+
+end end end
 
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{

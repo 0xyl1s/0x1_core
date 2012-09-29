@@ -2,11 +2,15 @@
 # encoding: utf-8
 # tested with ruby 1.9.3
 
-system("echo '________________________________________';"+
-       "date ;"+
-       "aptitude update > /dev/null &&"+
-       "DEBIAN_FRONTEND=noninteractive aptitude safe-upgrade -y &&"+
-       "aptitude clean")
+module X module Core module Users
+
+  system("echo '________________________________________';"+
+         "date ;"+
+         "aptitude update > /dev/null &&"+
+         "DEBIAN_FRONTEND=noninteractive aptitude safe-upgrade -y &&"+
+         "aptitude clean")
+
+end end end
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
 # Project: Epiculture

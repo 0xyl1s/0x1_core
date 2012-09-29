@@ -2,34 +2,38 @@
 # encoding: utf-8
 # tested with ruby 1.9.3
 
-#e_check = lambda { |x| print "#{x.send(:binding)} est égal à " + x}
+module X module Core module Users
 
-#def __a(variable)
+  #e_check = lambda { |x| print "#{x.send(:binding)} est égal à " + x}
+
+  #def __a(variable)
   #puts "#{variable} = " + variable
-#end
+  #end
 
-def __a(variable)
-  value = eval(variable)
-  puts "#{variable} = #{value}"
-end
+  def __a(variable)
+    value = eval(variable)
+    puts "#{variable} = #{value}"
+  end
 
-stdin = STDIN.gets
-puts "stdin = " + stdin
-#__a(stdin)
-#e_check.call(stdin)
-import = ARGV
-#puts import
+  stdin = STDIN.gets
+  puts "stdin = " + stdin
+  #__a(stdin)
+  #e_check.call(stdin)
+  import = ARGV
+  #puts import
 
-puts local_variables.inspect
-puts local_variables.include?(:stdin)
-puts local_variables.index(:stdin).class
-puts local_variables.index(:stdin).inspect
-puts local_variables.index(:stdin).methods.sort.join', '
-puts
-puts local_variables[0].class
-puts eval :stdin
+  puts local_variables.inspect
+  puts local_variables.include?(:stdin)
+  puts local_variables.index(:stdin).class
+  puts local_variables.index(:stdin).inspect
+  puts local_variables.index(:stdin).methods.sort.join', '
+  puts
+  puts local_variables[0].class
+  puts eval :stdin
 
-#%x{urxvt &}
+  #%x{urxvt &}
+
+end end end
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
 # Project: Epiculture

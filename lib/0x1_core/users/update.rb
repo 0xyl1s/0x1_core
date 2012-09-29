@@ -1,30 +1,22 @@
-#!/usr/bin/env ruby
 # encoding: utf-8
-# tested with ruby 1.9.2
+# tested with ruby 1.9.3
 
-module X module Users module Utils
-require_relative '../../../../lib/0x1/users/utils/templates.rb'
-require 'minitest/spec.rb'
-require 'minitest/autorun.rb'
+module X module Core module Users
+  require_relative '../0x1_lib.helper.rb'
 
-describe Templates do
+  class Update
+    include X::Lib::Toolkit::Standard
 
-  before do
-    @template = Templates.new('caat')
-  end
+    def initialize
+      @x_lib_path_base = X_LIB_PATH_BASE
+      x__lib_load_modules([:standard])
+      @git_path = File.expand_path(__FILE__ + '/../../')
+    end
 
-  describe "when testing catfly" do
-    it "should respond 'foo'" do
-      @template.catfly.must_equal "foo"
+    def run
+      system "cd #{@git_path}; git pull"
     end
   end
-
-  describe "when testing test_create" do
-    it "should skip" do
-      skip "TODO"
-    end
-  end
-end
 
 end end end
 
@@ -32,7 +24,6 @@ end end end
 # Project: Epiculture
 # Author: Pierre-Mael Cretinon
 # Email: projects2011@3eclipses.com
-# coding style: 0.0.2
 # License: GNU GPLv3
 #
 # Notes:

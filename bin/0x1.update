@@ -2,12 +2,13 @@
 # encoding: utf-8
 # tested with ruby 1.9.3
 
-module X module Core
-require_relative '../lib/0x1/core/update.rb'
+module X module Core module Main
 
-Update.new.run
+  require_relative '../lib/0x1_core/main/update.rb'
 
-end end
+  Update.new.run
+
+end end end
 
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{

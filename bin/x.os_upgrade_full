@@ -2,7 +2,11 @@
 # encoding: utf-8
 # tested with ruby 1.9.3
 
-system("date; aptitude update && aptitude full-upgrade -y")
+module X module Core module Users
+
+  system("date; aptitude update && aptitude full-upgrade -y")
+
+end end end
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
 # Project: Epiculture

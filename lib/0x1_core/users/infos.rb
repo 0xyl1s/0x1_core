@@ -1,38 +1,23 @@
 # encoding: utf-8
-# tested with ruby 1.9.2
+# tested with ruby 1.9.3
 
-module X module Users module Utils
-require_relative '../../0x1_lib.helper.rb'
+module X module Core module Users
+  require_relative '../0x1_lib.helper.rb'
 
-class Templates
-def initialize(new_file, type='ruby_pima_copyleft')
-  x__load_modules([:standard])
-  @new_file = new_file
-end
+  class Infos
+    include X::Lib::Toolkit::Standard
 
-def create
-  abort "file #{@new_file} exists already" if File.exist?(@new_file)
-  ruby_template_path='/.0x1/00scripts/0x1_users/data/templates/ruby/template_ruby'
-  ruby_template = open(ruby_template_path, &:read)
-  x__file_save(ruby_template, @new_file, '700')
-end
+    def initialize(i_length_raw=nil, b_lowercase=false)
+      @x_lib_path_base = X_LIB_PATH_BASE
+      x__lib_load_modules([:standard])
+    end
 
-def launch_editor
-  system("gvim #{@new_file}")
-end
-
-def help
-  puts <<-hdhelp
-  create templates.
-  usage :
-  X::Users::Template.new(<template_type>, [<template_options>])
-  hdhelp
-end
-
-def catfly
-  'foo'
-end
-end
+    def version
+      #version = File.read(File.expand_path(__FILE__ + '/../../version'))
+      version = x__file_read(File.expand_path(__FILE__ + '/../../version'))
+      puts version
+    end
+  end
 
 end end end
 
@@ -41,7 +26,6 @@ end end end
 # Project: Epiculture
 # Author: Pierre-Mael Cretinon
 # Email: projects2011@3eclipses.com
-# coding style: 0.0.2
 # License: GNU GPLv3
 #
 # Notes:

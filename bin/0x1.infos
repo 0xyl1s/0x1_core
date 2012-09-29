@@ -2,12 +2,13 @@
 # encoding: utf-8
 # tested with ruby 1.9.3
 
-module X module Users
-require_relative '../lib/0x1/core/infos.rb'
+module X module Core module Main
 
-Infos.new.version
+  require_relative '../lib/0x1_core/core/infos.rb'
 
-end end
+  Infos.new.version
+
+end end end
 
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{

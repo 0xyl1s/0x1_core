@@ -2,24 +2,28 @@
 # encoding: utf-8
 # tested with ruby 1.9.3
 
-#TODO: big refactoring...
-date = Time.now
-puts date
-mu_path = %x"echo ~/.0x1/00mu".chomp!
-sync_autocommit_mu_path = "#{mu_path}/00sync/autocommit"
-sync_autocommit_logs_filepath = "#{mu_path}/00logs/autocommit"
-system "echo #{date} >> #{sync_autocommit_logs_filepath}"
-system "echo 'BUGGED' >> #{sync_autocommit_logs_filepath}"
-repositories = (Dir.entries(sync_autocommit_mu_path) - %w{ . ..})
-repositories.each {|repository|
-  repository_path = "#{sync_autocommit_mu_path}/#{repository}"
-  begin
-    system "echo \"autocommitted (unchecked) >> #{repository_path}\" >> #{sync_autocommit_logs_filepath}"
-    system "(cd #{repository_path} ; git add . ; git commit -am \"#{date}\")"
-  rescue
-    system "echo \"ERROR >> #{repository_path}\" >> #{sync_autocommit_logs_filepath}"
-  end
-}
+module X module Core module Main
+
+  #TODO: big refactoring...
+  date = Time.now
+  puts date
+  mu_path = %x"echo ~/.0x1/00mu".chomp!
+  sync_autocommit_mu_path = "#{mu_path}/00sync/autocommit"
+  sync_autocommit_logs_filepath = "#{mu_path}/00logs/autocommit"
+  system "echo #{date} >> #{sync_autocommit_logs_filepath}"
+  system "echo 'BUGGED' >> #{sync_autocommit_logs_filepath}"
+  repositories = (Dir.entries(sync_autocommit_mu_path) - %w{ . ..})
+  repositories.each {|repository|
+    repository_path = "#{sync_autocommit_mu_path}/#{repository}"
+    begin
+      system "echo \"autocommitted (unchecked) >> #{repository_path}\" >> #{sync_autocommit_logs_filepath}"
+      system "(cd #{repository_path} ; git add . ; git commit -am \"#{date}\")"
+    rescue
+      system "echo \"ERROR >> #{repository_path}\" >> #{sync_autocommit_logs_filepath}"
+    end
+  }
+
+end end end
 
 # ____________________________________________________________________
 # ᨊ ᨉ  LICENSE ᨊ ᨉ ᨊ ᨉ ᨊ ᨉ ᨊ ᨉ ᨊ ᨉ ᨊ ᨉ ᨊ ᨉ ᨊ ᨉ ᨊ ᨉ ᨊ ᨉ ᨊ ᨉ ᨊ ᨉ ᨊ ᨉ ᨊ ᨉ

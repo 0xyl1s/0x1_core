@@ -2,10 +2,9 @@
 # encoding: utf-8
 # tested with ruby 1.9.3
 
-module X module Users module Utils
-require_relative '../lib/0x1/users/utils/hash.rb'
+module X module Core module Users
 
-
+  require_relative '../lib/0x1/users/utils/hash.rb'
 
 end end end
 

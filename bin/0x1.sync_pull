@@ -2,23 +2,27 @@
 # encoding: utf-8
 # tested with ruby 1.9.3
 
-date = Time.now
-puts date
-mu_path = %x"echo ~/.0x1/00mu".chomp!
-sync_pull_mu_path = "#{mu_path}/00sync/pull"
-sync_pull_logs_filepath = "#{mu_path}/00logs/sync_pull"
-system "echo #{date} >> #{sync_pull_logs_filepath}"
-system "echo 'BUGGED' >> #{sync_pull_logs_filepath}"
-repositories = (Dir.entries(sync_pull_mu_path) - %w{ . ..})
-repositories.each {|repository|
-  repository_path = "#{sync_pull_mu_path}/#{repository}"
-  begin
-    system "(cd #{repository_path} ; git pull)"
-    system "echo \"pulled >> #{repository_path}\" >> #{sync_pull_logs_filepath}"
-  rescue
-    system "echo \"ERROR >> #{repository_path}\" >> #{sync_pull_logs_filepath}"
-  end
-}
+module X module Core module Users
+
+  date = Time.now
+  puts date
+  mu_path = %x"echo ~/.0x1/00mu".chomp!
+  sync_pull_mu_path = "#{mu_path}/00sync/pull"
+  sync_pull_logs_filepath = "#{mu_path}/00logs/sync_pull"
+  system "echo #{date} >> #{sync_pull_logs_filepath}"
+  system "echo 'BUGGED' >> #{sync_pull_logs_filepath}"
+  repositories = (Dir.entries(sync_pull_mu_path) - %w{ . ..})
+  repositories.each {|repository|
+    repository_path = "#{sync_pull_mu_path}/#{repository}"
+    begin
+      system "(cd #{repository_path} ; git pull)"
+      system "echo \"pulled >> #{repository_path}\" >> #{sync_pull_logs_filepath}"
+    rescue
+      system "echo \"ERROR >> #{repository_path}\" >> #{sync_pull_logs_filepath}"
+    end
+  }
+
+end end end
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
 # Project: Epiculture

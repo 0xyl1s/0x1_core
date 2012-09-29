@@ -1,28 +1,29 @@
 # encoding: utf-8
 # tested with ruby 1.9.3
 
-module X module Core
-require_relative '../0x1_lib.helper.rb'
+module X module Core module Users
+  require_relative '../../0x1_lib.helper.rb'
 
-class Infos
-def initialize(i_length_raw=nil, b_lowercase=false)
-  x__load_modules([:standard])
-end
+  class Hash
+    include X::Lib::Toolkit::Standard
 
-def version
-  #version = File.read(File.expand_path(__FILE__ + '/../../version'))
-  version = x__file_read(File.expand_path(__FILE__ + '/../../version'))
-  puts version
-end
-end
+    def initialize
+      @x_lib_path_base = X_LIB_PATH_BASE
+      x__lib_load_modules([:standard])
+    end
 
-end end
+    private
+
+  end
+
+end end end
 
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
 # Project: Epiculture
 # Author: Pierre-Mael Cretinon
 # Email: projects2011@3eclipses.com
+# coding style: 0.0.2
 # License: GNU GPLv3
 #
 # Notes:

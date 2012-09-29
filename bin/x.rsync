@@ -1,12 +1,16 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
 
-options_safe = '-navh'
-options_unsafe = '-avh'
-command_safe = "rsync #{options_safe} --no-o --no-g --stats --progress #{ARGV.join(' ')}"
-command_unsafe = "rsync #{options_unsafe} --no-o --no-g --stats --progress #{ARGV.join(' ')}"
-system(command_safe)
-puts "\n0x1>>> unsafe command:\n#{command_unsafe}\n\n\n"
+module X module Core module Users
+
+  options_safe = '-navh'
+  options_unsafe = '-avh'
+  command_safe = "rsync #{options_safe} --no-o --no-g --stats --progress #{ARGV.join(' ')}"
+  command_unsafe = "rsync #{options_unsafe} --no-o --no-g --stats --progress #{ARGV.join(' ')}"
+  system(command_safe)
+  puts "\n0x1>>> unsafe command:\n#{command_unsafe}\n\n\n"
+
+end end end
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
 # Project: Epiculture

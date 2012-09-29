@@ -1,19 +1,8 @@
 # encoding: utf-8
-# tested with ruby 1.9.2
 
-desc "Run all spec tests"
-task :spec_tests do
-  require 'rake/testtask.rb'
-  Rake::TestTask.new("spectests") do |spec|
-    spec.libs.push "lib"
-    #t.pattern = "spec/ec1/users/utils/*_spec.rb"
-    spec.test_files = FileList["spec/**/*_spec.rb"]
-    spec.verbose = true
-  end
-  task("spectests").execute
+task :default do
+  puts "rake from 0x1_core root."
 end
-
-task :default => :spec_tests
 
 # Project infos >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># {{{
 # Project: Epiculture

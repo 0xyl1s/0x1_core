@@ -5,23 +5,26 @@
 # TODO: refactoring using oop
 # TODO: logs management
 # TODO: tests
+module X module Core module Main
 
-date = Time.now
-puts date
-mu_path = %x"echo ~/.0x1/00mu".chomp!
-sync_pull_mu_path = "#{mu_path}/00sync/pull.manual"
-sync_pull_logs_filepath = "#{mu_path}/00logs/sync_pull.manual"
-system "echo #{date} >> #{sync_pull_logs_filepath}"
-repositories = (Dir.entries(sync_pull_mu_path) - %w{ . .. })
-repositories.each {|repository|
-  repository_path = "#{sync_pull_mu_path}/#{repository}"
-  begin
-    system "(cd #{repository_path} ; git pull)"
-    system "echo \"pulled >> #{repository_path}\" >> #{sync_pull_logs_filepath}"
-  rescue
-    system "echo \"ERROR >> #{repository_path}\" >> #{sync_pull_logs_filepath}"
-  end
-}
+  date = Time.now
+  puts date
+  mu_path = %x"echo ~/.0x1/00mu".chomp!
+  sync_pull_mu_path = "#{mu_path}/00sync/pull.manual"
+  sync_pull_logs_filepath = "#{mu_path}/00logs/sync_pull.manual"
+  system "echo #{date} >> #{sync_pull_logs_filepath}"
+  repositories = (Dir.entries(sync_pull_mu_path) - %w{ . .. })
+  repositories.each {|repository|
+    repository_path = "#{sync_pull_mu_path}/#{repository}"
+    begin
+      system "(cd #{repository_path} ; git pull)"
+      system "echo \"pulled >> #{repository_path}\" >> #{sync_pull_logs_filepath}"
+    rescue
+      system "echo \"ERROR >> #{repository_path}\" >> #{sync_pull_logs_filepath}"
+    end
+  }
+
+end end end
 
 # ____________________________________________________________________
 # >>>>>  projet epiculture/ec1   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#{{{
