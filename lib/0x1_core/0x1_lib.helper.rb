@@ -1,7 +1,7 @@
 # encoding: utf-8
 # tested with ruby 1.9.3
 
-module X module Xtra
+module X module Core
 
   X_LIB_PATH_BASE = ".0x1/00mu/00sourcing/0x1_lib"
 

@@ -1,7 +1,7 @@
 # encoding: utf-8
 # tested with ruby 1.9.3
 
-module X module Xtra module Users
+module X module Core module Users
   require_relative '../0x1_lib.helper.rb'
 
   class Sshfs
